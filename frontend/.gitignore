@@ -1,3 +1,20 @@
+# Backend 
+backend/LibraryAPI/bin/
+backend/LibraryAPI/obj/
+backend/LibraryAPI/library.db
+backend/LibraryAPI/library.db-shm
+backend/LibraryAPI/library.db-wal
+*.user
+.vs/
+
+# Frontend 
+node_modules
+dist
+dist-ssr
+*.local
+frontend/.env
+frontend/.env.local
+
 # Logs
 logs
 *.log
@@ -7,12 +24,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
-
-# Editor directories and files
+# Editor
 .vscode/*
 !.vscode/extensions.json
 .idea
