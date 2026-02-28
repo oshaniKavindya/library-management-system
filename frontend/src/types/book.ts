@@ -22,3 +22,12 @@ export interface UpdateBookPayload {
 export interface ApiError {
   message: string;
 }
+export interface PagedBooksResponse {
+  data: Book[]
+  totalCount: number
+  totalPages: number
+  currentPage: number
+  pageSize: number
+  hasNextPage: boolean
+  hasPreviousPage: boolean
+}

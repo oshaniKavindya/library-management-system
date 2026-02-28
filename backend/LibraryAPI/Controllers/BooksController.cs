@@ -67,6 +67,42 @@ namespace LibraryAPI.Controllers
             }
         }
 
+        // get books with pagination
+        [HttpGet("paged")]
+        public async Task<ActionResult> GetBooksPaged(
+            [FromQuery] int page = 1,
+            [FromQuery] int pageSize = 6)
+        {
+            try
+            {
+                var totalCount = await _context.Books.CountAsync();
+                var totalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
+
+                var books = await _context.Books
+                    .OrderByDescending(b => b.CreatedAt)
+                    .Skip((page - 1) * pageSize)
+                    .Take(pageSize)
+                    .Select(b => MapToDto(b))
+                    .ToListAsync();
+
+                return Ok(new
+                {
+                    data = books,
+                    totalCount,
+                    totalPages,
+                    currentPage = page,
+                    pageSize,
+                    hasNextPage = page < totalPages,
+                    hasPreviousPage = page > 1
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error retrieving paged books");
+                return StatusCode(500, new { message = "An error occurred." });
+            }
+        }
+
         //  create a bok
         [HttpPost]
         [ProducesResponseType(typeof(BookResponseDto), StatusCodes.Status201Created)]
