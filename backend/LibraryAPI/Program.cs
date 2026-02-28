@@ -50,10 +50,10 @@ builder.Services.AddCors(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
-    options.SwaggerDoc("V1" , new OpenApiInfo
+    options.SwaggerDoc("v1" , new OpenApiInfo
     {
         Title = "Library Management API",
-        Version = "V1",
+        Version = "v1",
         Description = "RESTful API for managing library book records."
     });
     options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme

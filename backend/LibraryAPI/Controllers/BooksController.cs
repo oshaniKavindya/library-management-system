@@ -167,14 +167,17 @@ namespace LibraryAPI.Controllers
         }
 
         // Helper: map Book entity to response DTO
-        private static BookResponseDto MapToDto(Book book) => new()
+        private static BookResponseDto MapToDto(Book book)
         {
-            Id = book.Id,
-            Title = book.Title,
-            Author = book.Author,
-            Description = book.Description,
-            CreatedAt = book.CreatedAt,
-            UpdatedAt = book.UpdatedAt
-        };
+            return new()
+            {
+                Id = book.Id,
+                Title = book.Title,
+                Author = book.Author,
+                Description = book.Description ?? string.Empty,
+                CreatedAt = book.CreatedAt,
+                UpdatedAt = book.UpdatedAt
+            };
+        }
     }
 }
